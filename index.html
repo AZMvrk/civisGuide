@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hu">
+<html lang="hu" class="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,16 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         #map { height: 600px; }
+        .dark { background-color: #1a202c; color: #f7fafc; }
+        .dark #map { filter: invert(90%) hue-rotate(180deg); }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-900">
+<body class="bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-white">
     <div class="container mx-auto p-4">
-        <h1 class="text-3xl font-bold text-center mb-4">Debrecen Digitális Idegenvezető</h1>
+        <div class="flex justify-between items-center mb-4">
+            <h1 class="text-3xl font-bold">Debrecen Digitális Idegenvezető</h1>
+            <button id="toggle-dark" class="px-4 py-2 bg-purple-500 text-white rounded">🌙 Dark Mode</button>
+        </div>
         
         <div class="flex flex-wrap justify-center gap-2 mb-4">
             <button class="filter-btn px-4 py-2 bg-blue-500 text-white rounded" data-category="landmarks">Landmarks</button>
@@ -51,6 +56,7 @@
         };
 
         let markers = [];
+        let userMarker;
         
         function showCategory(category) {
             markers.forEach(marker => map.removeLayer(marker));
@@ -68,6 +74,19 @@
         document.querySelectorAll('.filter-btn').forEach(button => {
             button.addEventListener('click', () => showCategory(button.dataset.category));
         });
+        
+        document.getElementById('toggle-dark').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+        });
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(position => {
+                let userCoords = [position.coords.latitude, position.coords.longitude];
+                userMarker = L.marker(userCoords, {icon: L.icon({iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', iconSize: [32, 32]})}).addTo(map)
+                    .bindPopup("<strong>Te vagy itt!</strong>");
+                map.setView(userCoords, 14);
+            }, () => alert("Nem sikerült meghatározni a helyzetedet."));
+        }
         
         showCategory("all");
     </script>
