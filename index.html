@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debrecen Digitális Idegenvezető</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-900">
+    <div class="container mx-auto p-4">
+        <h1 class="text-3xl font-bold text-center mb-4">Debrecen Digitális Idegenvezető</h1>
+        
+        <div class="flex flex-wrap justify-center gap-2 mb-4">
+            <button class="filter-btn px-4 py-2 bg-blue-500 text-white rounded" data-category="landmarks">Landmarks</button>
+            <button class="filter-btn px-4 py-2 bg-green-500 text-white rounded" data-category="clubs">Clubs</button>
+            <button class="filter-btn px-4 py-2 bg-red-500 text-white rounded" data-category="restaurants">Restaurants</button>
+            <button class="filter-btn px-4 py-2 bg-yellow-500 text-white rounded" data-category="hotels">Hotels</button>
+            <button class="filter-btn px-4 py-2 bg-gray-500 text-white rounded" data-category="all">Show All</button>
+        </div>
+        
+        <div id="map" class="rounded-lg shadow-lg"></div>
+    </div>
+    
+    <script>
+        let map = L.map('map').setView([47.5317, 21.6273], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        let categories = {
+            landmarks: [
+                { name: "Nagytemplom", coords: [47.5317, 21.6244], link: "https://hu.wikipedia.org/wiki/Debreceni_Reform%C3%A1tus_Nagytemplom" },
+                { name: "Déri Múzeum", coords: [47.5300, 21.6218], link: "https://hu.wikipedia.org/wiki/D%C3%A9ri_M%C3%BAzeum" },
+                { name: "Debreceni Egyetem", coords: [47.5530, 21.6219], link: "https://hu.wikipedia.org/wiki/Debreceni_Egyetem" }
+            ],
+            clubs: [
+                { name: "Club 1", coords: [47.5310, 21.6250], link: "#" }
+            ],
+            restaurants: [
+                { name: "Restaurant 1", coords: [47.5320, 21.6260], link: "#" }
+            ],
+            hotels: [
+                { name: "Hotel 1", coords: [47.5330, 21.6270], link: "#" }
+            ]
+        };
+
+        let markers = [];
+        
+        function showCategory(category) {
+            markers.forEach(marker => map.removeLayer(marker));
+            markers = [];
+
+            let places = category === "all" ? Object.values(categories).flat() : categories[category];
+            
+            places.forEach(place => {
+                let marker = L.marker(place.coords).addTo(map)
+                    .bindPopup(`<strong>${place.name}</strong><br><a href="${place.link}" target="_blank">További információ</a>`);
+                markers.push(marker);
+            });
+        }
+        
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => showCategory(button.dataset.category));
+        });
+        
+        showCategory("all");
+    </script>
+</body>
+</html>
