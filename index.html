@@ -26,11 +26,11 @@
         </div>
         
         <div class="flex flex-wrap justify-center gap-2 mb-4">
-            <button class="filter-btn px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded" data-category="landmarks">Landmarks</button>
-            <button class="filter-btn px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded" data-category="clubs">Clubs</button>
-            <button class="filter-btn px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded" data-category="restaurants">Restaurants</button>
-            <button class="filter-btn px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded" data-category="hotels">Hotels</button>
-            <button class="filter-btn px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded" data-category="all">Show All</button>
+            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="landmarks">Látványosságok🏛️</button>
+            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="clubs">Szórakozóhelyek🎶</button>
+            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="restaurants">Éttermek🍜</button>
+            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="hotels">Hotelek🛏️</button>
+            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="all">Összes</button>
             <!-- színek -> https://tailwindcss.com/docs/colors-->
         </div>
         
@@ -45,19 +45,65 @@
         }).addTo(map);
 
         let categories = {
+
             landmarks: [
-                { name: "Nagytemplom", coords: [47.5317, 21.6244], link: "https://hu.wikipedia.org/wiki/Debreceni_Reform%C3%A1tus_Nagytemplom" },
-                { name: "Déri Múzeum", coords: [47.5300, 21.6218], link: "https://hu.wikipedia.org/wiki/D%C3%A9ri_M%C3%BAzeum" },
-                { name: "Debreceni Egyetem", coords: [47.5530, 21.6219], link: "https://hu.wikipedia.org/wiki/Debreceni_Egyetem" }
+                { name: "Nagytemplom ⛪ Debrecen ikonikus épülete, amely a magyar református egyház jelképe. Az ország legnagyobb református temploma, itt hirdették ki a Függetlenségi Nyilatkozatot 1849-ben.", coords: [47.5317, 21.6244], link: "https://www.nagytemplom.hu/" },
+
+                { name: "Nagyerdei Víztorony 💧 A Nagyerdő egyik legújabb látványossága, amely kilátóként és rendezvényhelyszínként is funkcionál, különleges panorámát nyújtva a városra.", coords: [47.55489033205623, 21.631051221458456], link: "https://www.instagram.com/nagyerdeiviztorony/" },
+
+                { name: "MODEM 🎨 Modern és Kortárs Művészeti Központ Magyarország egyik legnagyobb kortárs művészeti galériája. Rendszeresen rendeznek itt kiállításokat és kulturális eseményeket.", coords: [47.53383620774447, 21.621412181929063], link: "https://modemart.hu/" },
+
+                { name: "Déri Múzeum ⚔️ Híres művészeti és történelmi gyűjteményekkel rendelkezik. Itt találhatók Munkácsy Mihály híres Krisztus-trilógiájának festményei.", coords: [47.53295021543681, 21.622114179030394], link: "https://www.derimuzeum.hu/" },
+
+                { name: "Aquaticum Mediterrán Élményfürdő 🌊 Egy fedett élményfürdő trópusi környezettel, csúszdákkal és wellness-részleggel. A debreceni termálvíz gyógyhatású, ezért sokan látogatják.", coords: [47.553127554480795, 21.629721683338104], link: "https://www.aquaticum.hu/hu/spa/elmenyfurdo?gad_source=1&gclid=EAIaIQobChMIqe6ompK6jAMVh1CRBR1AsQ6ZEAAYASAAEgLg1_D_BwE" },
+
+                { name: "Nagyerdő és a Nagyerdei Park 🌳 Debrecen „zöld szíve”, amely tökéletes kikapcsolódási lehetőséget nyújt.  Itt található a Nagyerdei Stadion, a Békás-tó, valamint a Ködszínház.", coords: [47.552777735692835, 21.625906838513245], link: "https://www.debrecen.hu/hu/turista/latnivalok/nagyerdei-park" },
+
+                { name: "Agóra Tudományos Élményközpont 🔬 Interaktív tudományos kiállítások és programok, amelyek szórakoztató módon ismertetik meg a látogatókat a természettudományokkal.", coords: [47.55816680544664, 21.619651626984922], link: "https://www.agoradebrecen.hu/" },
+
+                { name: "Kerekerdő Élménypark 🍃 Családbarát élménypark, amely mesevilágot idéző környezettel és különféle szórakozási lehetőségekkel várja a látogatókat.", coords: [47.53586259489832, 21.694592181486158], link: "https://www.facebook.com/kerekerdo.elmenypark/?locale=hu_HU" },
+
+                { name: "Nagyerdei Kultúrpark Állat- és Növénykert, Vidámpark 🦒 Magyarország első vidéki állatkertje és egyetlen klasszikus vidámparkja, amely generációkat összekötő élményeket nyújt.", coords: [47.552537579943895, 21.6333999], link: "https://www.facebook.com/zoodebrecen/?locale=hu_HU" },
+
+                { name: "Debreceni Egyetem 🎓 A város egyik legszebb épülete, impozáns homlokzattal és hatalmas parkosított területtel.  Az egyetem több mint százéves múltra tekint vissza.", coords: [47.5530, 21.6219], link: "https://unideb.hu/" }
             ],
+
             clubs: [
-                { name: "Club 1", coords: [47.5310, 21.6250], link: "#" }
+                { name: "Nagyerdei Víztorony 💧 A Nagyerdő egyik legújabb látványossága, amely kilátóként és rendezvényhelyszínként is funkcionál, különleges panorámát nyújtva a városra.", coords: [47.55489033205623, 21.631051221458456], link: "https://www.facebook.com/nagyerdeiviztorony/?locale=hu_HU" },
+
+                { name: "Pince Café & Music Club 🧱 Hangulatos éjszakai klub élőzenével és széles italválasztékkal, ideális hely baráti összejövetelekhez és tánchoz.", coords: [47.52761080614431, 21.626356212172304], link: "https://www.facebook.com/pincemusicclub38/?locale=hu_HU" },
+
+                { name: "Bárka Music Pub ⚓ Kellemes atmoszférájú pub, ahol rendszeresen fellépnek helyi zenekarok, és széles sörkínálattal várják a vendégeket.", coords: [47.52928757779839, 21.62610303915739], link: "https://www.facebook.com/barkamusicpub/" },
+
+                { name: "Péterfia Rock Söröző 🤘 A rockzene kedvelőinek törzshelye, autentikus hangulattal és változatos italválasztékkal.", coords: [47.53716375711435, 21.625482953991508], link: "https://www.facebook.com/p/P%C3%A9terfia-Rock-S%C3%B6r%C3%B6z%C5%91-100063764763651/" },
+
+                { name: "Club Seven 7️⃣ Modern éjszakai klub a belvárosban, különböző zenei stílusokkal és tematikus estekkel.", coords: [47.529354653051094, 21.623307056444293], link: "https://clubseven.eatbu.com/?lang=en" },
+
+                { name: "Jazz Klub Söröző 🎺 A jazz zene szerelmeseinek kedvelt helye, élő koncertekkel és kellemes környezettel.", coords: [47.53233700219654, 21.621207002678148], link: "https://www.facebook.com/p/Debrecen-Jazz-Club-100063457811019/?locale=hu_HU" }
             ],
+
             restaurants: [
-                { name: "Restaurant 1", coords: [47.5320, 21.6260], link: "#" }
+                { name: "Paripa Csárda 🐴 Hagyományos csárda jellegű étterem, amely autentikus magyar ételekkel és élőzenével várja vendégeit.", coords: [47.459479600534124, 21.689180255413845], link: "https://www.paripacsarda.hu/" },
+
+                { name: "Symphonia Étterem 🎼 Elegáns étterem, amely különleges gasztronómiai élményeket kínál, ideális hely üzleti ebédekhez és családi vacsorákhoz.", coords: [47.52512575761724, 21.6449798121722], link: "https://www.symphoniaetterem.hu/" },
+
+                { name: "Zöldfa Vendéglő és Étterem 🥬 Hagyományos magyar konyhát kínáló vendéglő, családias hangulattal és napi menüajánlatokkal.", coords: [47.5455442170864, 21.643544995900093], link: "https://zoldfadebrecen.hu/" },
+
+                { name: "Calico Jack Pub 🦜 Tengeri kalóz tematikájú étterem, amely széles étel- és italválasztékkal várja vendégeit, különleges atmoszférával.", coords: [47.54247965018891, 21.624635996829927], link: "https://www.calicojackpub.hu/" },
+
+                { name: "Krúdy Étterem 🍴 A Nagyerdő szívében található étterem, amely hagyományos magyar ételeket kínál elegáns környezetben.", coords: [47.551273278153815, 21.628507812173833], link: "https://www.villahotel.hu/" }
             ],
+
             hotels: [
-                { name: "Hotel 1", coords: [47.5330, 21.6270], link: "#" }
+                { name: "Erdőspuszta Club Hotel Fenyves 🌲 Négycsillagos szálloda csendes, erdei környezetben, wellness szolgáltatásokkal és lovas programokkal.", coords: [47.48322830852315, 21.71287436228205], link: "https://erdospuszta-clubhotel.hu/online-foglalas/?gad_source=1&gclid=EAIaIQobChMIjJ2EnLe6jAMVzlSRBR1HejF_EAAYASAAEgLTdPD_BwE" },
+
+                { name: "Péterfia Boutique Apartments 🛌 Stílusos apartmanok a belvárosban, modern berendezéssel és kényelmes szolgáltatásokkal.", coords: [47.538051633669205, 21.625818427516343], link: "https://www.booking.com/hotel/hu/peterfia-boutique-apartments.hu.html" },
+
+                { name: "Hotel Divinus ⭐ Ötcsillagos szálloda a Nagyerdő közelében, luxus szolgáltatásokkal és elegáns szobákkal.", coords: [47.54901342804321, 21.62999288148691], link: "https://hoteldivinus.hu/?gad_source=1&gclid=EAIaIQobChMIhIjbgri6jAMVwxeiAx1nWCIPEAAYASAAEgLu1fD_BwE" },
+
+                { name: "Malom Hotel 🛞 Egyedi hangulatú szálloda egy régi malom épületében, modern kényelmi szolgáltatásokkal.", coords: [47.53485570207944, 21.61265279682942], link: "https://malomhoteldebrecen.hu/" },
+
+                { name: "Centrum Hotel ✨ Háromcsillagos superior szálloda a városközpontban, tágas szobákkal és ingyenes Wi-Fi-vel, közel a főbb nevezetességekhez.", coords: [47.53270104041591, 21.625185281486026], link: "https://centrumhotel.hu/" }
             ]
         };
 
@@ -85,14 +131,14 @@
             document.documentElement.classList.toggle('dark');
         });
 
-        // if (navigator.geolocation) {
-        //     navigator.geolocation.getCurrentPosition(position => {
-        //         let userCoords = [position.coords.latitude, position.coords.longitude];
-        //         userMarker = L.marker(userCoords, {icon: L.icon({iconUrl: 'https://cdn-icons-png.flaticon.com/512/25/25694.png', iconSize: [32, 32]})}).addTo(map)
-        //             .bindPopup("<strong>Te vagy itt!</strong>");
-        //         map.setView(userCoords, 14);
-        //     }, () => alert("Nem sikerült meghatározni a helyzetedet."));
-        // }
+         if (navigator.geolocation) {
+             navigator.geolocation.getCurrentPosition(position => {
+                 let userCoords = [position.coords.latitude, position.coords.longitude];
+                 userMarker = L.marker(userCoords, {icon: L.icon({iconUrl: 'https://cdn-icons-png.flaticon.com/128/9567/9567040.png', iconSize: [32, 32]})}).addTo(map)
+                     .bindPopup("<strong>Te vagy itt!</strong>");
+                 map.setView(userCoords, 14);
+             }, () => alert("Nem sikerült meghatározni a helyzetedet."));
+         }
         
         showCategory("all");
     </script>
