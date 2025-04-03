@@ -11,7 +11,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
-        #map { height: 600px; }
+        #map { height: 550px; }
         .dark { background-color: #1a202c; color: #f7fafc; }
         .dark #map { filter: invert(90%) hue-rotate(180deg); }
     </style>
@@ -21,17 +21,17 @@
         <div class="flex justify-between items-center mb-4">
             <div class="flex items-center">
                 <img src="https://www.debrecen.hu/assets/media/gallery/hu/1890/cimer.png" alt="Debrecen Címer" class="h-12 w-12 mr-4">
-                <h1 class="text-3xl font-bold text-yellow-300">Debreceni Digitális Idegenvezető</h1>
+                <h1 class="text-3xl font-bold text-amber-300">Debreceni Digitális Idegenvezető</h1>
             </div>
-            <button id="toggle-dark" class="px-0.5 py-0.5 bg-sky-700 text-white rounded">🌙⇌☀️</button>
+            <button id="toggle-dark" class="px-0.5 py-0.5 bg-amber-700 text-white rounded">🌙⇌☀️</button>
         </div>
         
         <div class="flex flex-wrap justify-center gap-2 mb-4">
-            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="landmarks">Látványosságok🏛️</button>
-            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="clubs">Szórakozóhelyek🎶</button>
-            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="restaurants">Éttermek🍜</button>
-            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="hotels">Hotelek🛏️</button>
-            <button class="filter-btn px-4 py-2 bg-sky-400 hover:bg-sky-500 text-gray-200 rounded" data-category="all">Összes</button>
+            <button class="filter-btn px-4 py-2 bg-amber-300 hover:bg-amber-500 text-gray-800 rounded font-bold" data-category="landmarks">Látványosságok 🏛️</button>
+            <button class="filter-btn px-4 py-2 bg-amber-300 hover:bg-amber-500 text-gray-800 rounded font-bold" data-category="clubs">Szórakozóhelyek 🎵</button>
+            <button class="filter-btn px-4 py-2 bg-amber-300 hover:bg-amber-500 text-gray-800 rounded font-bold" data-category="restaurants">Éttermek 🍜</button>
+            <button class="filter-btn px-4 py-2 bg-amber-300 hover:bg-amber-500 text-gray-800 rounded font-bold" data-category="hotels">Szállás 🛏️</button>
+            <button class="filter-btn px-4 py-2 bg-amber-300 hover:bg-amber-500 text-gray-800 rounded font-bold" data-category="all">Összes 📍</button>
             <!-- színek -> https://tailwindcss.com/docs/colors-->
         </div>
         
@@ -111,6 +111,14 @@
         let markers = [];
         let userMarker;
         
+        let categoryIcons = {
+            landmarks: '🏛️',
+            clubs: '🎵',
+            restaurants: '🍜',
+            hotels: '🛏️',
+            all: '📍'
+        };
+
         function showCategory(category) {
             markers.forEach(marker => map.removeLayer(marker));
             markers = [];
@@ -118,7 +126,12 @@
             let places = category === "all" ? Object.values(categories).flat() : categories[category];
             
             places.forEach(place => {
-                let marker = L.marker(place.coords).addTo(map)
+                let icon = L.divIcon({
+                    className: 'custom-icon',
+                    html: `<div style="font-size: 24px;">${categoryIcons[category] || '📍'}</div>`
+                });
+
+                let marker = L.marker(place.coords, { icon }).addTo(map)
                     .bindPopup(`<strong>${place.name}</strong><br><a href="${place.link}" target="_blank">További információ</a>`);
                 markers.push(marker);
             });
