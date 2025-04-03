@@ -12,6 +12,17 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
         body { font-family: 'Poppins', sans-serif; }
         #map { height: 550px; }
+        html, body {
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* nincs görgetés */
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
         .dark { background-color: #1a202c; color: #f7fafc; }
         .dark #map { filter: invert(90%) hue-rotate(180deg); }
     </style>
